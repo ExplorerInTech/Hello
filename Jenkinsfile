@@ -14,7 +14,7 @@ pipeline {
 		}
 	    	stage('Dev: Tag Image') {
 			steps {
-				openshiftTag alias: 'false', destStream: 'hello', destTag: 'latest', destinationAuthToken: '', destinationNamespace: 'hello', namespace: 'dev', srcStream: 'hello', srcTag: 'latest', verbose: 'false'
+				openshiftTag alias: 'false', destStream: 'hello', destTag: 'latest', destinationAuthToken: '', destinationNamespace: 'hello', namespace: 'hello', srcStream: 'hello', srcTag: 'latest', verbose: 'false'
 			}
 		}
 		stage('Dev: Deploy new image') {
