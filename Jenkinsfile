@@ -20,7 +20,7 @@ pipeline {
 		stage('Dev: Deploy new image') {
 	           steps {
 	              openshiftDeploy depCfg: 'simplehello', namespace: 'hello', verbose: 'false', waitTime: '', waitUnit: 'sec'
-	              openshiftVerifyDeployment depCfg: 'simplehello', namespace: 'hello', replicaCount: '1', verbose: 'false', verifyReplicaCount: 'true', waitTime: '', waitUnit: 'sec'
+	              openshiftVerifyDeployment depCfg: 'jenkins', namespace: 'hello', replicaCount: '1', verbose: 'false', verifyReplicaCount: 'true', waitTime: '', waitUnit: 'sec'
 	              openshiftVerifyService namespace: 'hello', svcName: 'hello', verbose: 'false', retryCount: '5'
 	           }
 	     	}
