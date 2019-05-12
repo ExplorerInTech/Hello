@@ -12,8 +12,17 @@ pipeline {
 			openshiftVerifyBuild bldCfg: 'hello', checkForTriggeredDeployments: 'false', namespace: 'hello', verbose: 'false'
 			}
 		}
-		
-            
-        
-    }
+	    	stage('Dev: Tag Image') {
+			steps {
+				openshiftTag alias: 'false', destStream: 'hello', destTag: 'latest', destinationAuthToken: '', destinationNamespace: 'hello', namespace: 'dev', srcStream: 'hello', srcTag: 'latest', verbose: 'false'
+			}
+		}
+		stage('Dev: Deploy new image') {
+	           steps {
+	              openshiftDeploy depCfg: 'hello', namespace: 'hello', verbose: 'false', waitTime: '', waitUnit: 'sec'
+	              openshiftVerifyDeployment depCfg: 'hello', namespace: 'hello', replicaCount: '1', verbose: 'false', verifyReplicaCount: 'true', waitTime: '', waitUnit: 'sec'
+	              openshiftVerifyService namespace: 'hello', svcName: 'hello', verbose: 'false', retryCount: '5'
+	           }
+	     	}
+	 }
 }
