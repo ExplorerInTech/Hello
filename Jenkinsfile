@@ -4,9 +4,10 @@ pipeline {
   }
 	
     stages {
-    stage('Build App') {
-      steps {
-        sh "mvn clean package -P docker-image"
-      }
+	    stage('Build App') {
+		      steps {
+			sh "mvn clean package -P docker-image"
+		      }
+    	   }
     }
 }
