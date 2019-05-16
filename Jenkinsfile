@@ -6,7 +6,7 @@ pipeline {
     stages {
 	    stage('Build App') {
 		      steps {
-			sh "mvn clean package"
+			sh "mvn clean package -P docker-image"
 		      }
     	   }
     }
